@@ -1,0 +1,24 @@
+   --------------PEDIDO DE VENTA---------------                                 
+                 AGRO PUNTO VERDE                                               
+   Emision: 2017-11-24    Pedido Nro.: 8                                        
+   Hora:  12:27:56                                                              
+   Tel.: 2471192013                                                             
+   Usuario: David Josafat                                                       
+   Direccion: Bravo Norte 316                                                   
+   Ciudad: Huamantla                                                            
+   =============================================                                
+   ID          Nombre     Cant P.Unit.   Importe                                
+   ---------------------------------------------                                
+    S/N    AGRIVER 1.8% P    5  975      4875                                   
+    S/N    ALIETTE WDG       2  650      1300                                   
+    S/N    AGRAMINA         10  450      4500                                   
+   =============================================                                
+   No. articulos : 17                                                           
+   TOTAL : 10675                                                                
+                                                                                
+         Gracias por su compra                                                  
+   ============================================                                 
+                                                                                
+                                                                                
+                                                                                
+   Esta boleta no tiene valor fiscal, solo para uso interno                     

@@ -1,0 +1,6 @@
+sql3211628
+SVBH8Vb9E8
+jdbc:mysql://sql3.freemysqlhosting.net/sql3211628
+root
+infected
+jdbc:mysql://192.168.1.71/agropuntoverde
