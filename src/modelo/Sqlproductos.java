@@ -53,6 +53,33 @@ public class Sqlproductos extends conectar {
             JOptionPane.showMessageDialog(null, "Ese código ya está registrado");
         }   
    }
+    public void AgregarCodigo(product_code item) {
+     
+       sql="INSERT INTO product_code (id, nombre,imagencode) VALUES(?,?,?)";
+        try {
+            PreparedStatement ps=cn.prepareStatement(sql);
+            ps.setString(1,item.getId());
+            ps.setString(2,item.getNombre());
+            ps.setString(3,item.getImagen());
+            
+            int n= ps.executeUpdate();
+           // ps.execute();       
+            //boolean execute = ps.execute();
+              if(n>0)
+            {
+                JOptionPane.showMessageDialog(null, "Se guardaron los datos");
+               
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(null, "Error");
+            }
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ese código ya está registrado");
+        }   
+   }
+   
    RegistrarCompra reg= new RegistrarCompra(); 
   public boolean esnumero(String cadena){
       try {
@@ -62,6 +89,8 @@ public class Sqlproductos extends conectar {
 		return false;
 	}
   }
+
+  
   /*Método busca y devuelve los datos a RegistrarCompra para que se agreguen a la tabla*/
   public String[] agregarventa(productos p){
     DefaultTableModel modelo= new DefaultTableModel();     
@@ -71,7 +100,7 @@ public class Sqlproductos extends conectar {
             cant=Integer.parseInt(valida);
             if(cant>=1){      
             sql="";   
-            sql="SELECT * FROM productos WHERE id='"+p.getId()+"'";       
+            sql="SELECT * FROM productos WHERE id='"+p.getId()+"' OR Nombre='"+p.getNombre()+"'";       
                 try {
                     Statement st = cn.createStatement();
                     ResultSet rs = st.executeQuery(sql);
@@ -111,12 +140,12 @@ public class Sqlproductos extends conectar {
            return datos;
    }  
   /*Metodo buscar*/
-  BuscarProductos busca=new BuscarProductos();
+  BuscarProductos busca=new BuscarProductos(null, false);
   
   public String[] buscar(productos p){
     
     sql="";   
-    sql="SELECT * FROM productos WHERE id='"+p.getId()+"' || Nombre='"+p.getNombre()+"'";
+    sql="SELECT * FROM productos WHERE id='"+p.getId()+"' || Nombre LIKE'%"+p.getNombre()+"%'";
     try {
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(sql);

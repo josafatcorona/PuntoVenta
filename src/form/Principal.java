@@ -1,6 +1,7 @@
 package form;
 
 import javax.swing.JOptionPane;
+import modelo.conectar;
 
 public class Principal extends javax.swing.JFrame {
      
@@ -60,7 +61,7 @@ public class Principal extends javax.swing.JFrame {
 
         Producto_Nuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Producto_Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box (2).png"))); // NOI18N
-        Producto_Nuevo.setText("Registrar Producto");
+        Producto_Nuevo.setText("Productos");
         Producto_Nuevo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Producto_Nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,16 +156,19 @@ public class Principal extends javax.swing.JFrame {
             this.dispose();        
     }//GEN-LAST:event_VentasActionPerformed
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        conectar con = new conectar();
+        con.cierraConexion();
         Inicio_sesion i=new Inicio_sesion();
         i.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void Producto_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Producto_NuevoActionPerformed
-        RegistrarProductos nuevop=new RegistrarProductos();
-        nuevop.setVisible(true);
-        nuevop.idcajero=cajero;
-        nuevop.ncajero=jLabel2.getText();
+        Productos productos=new Productos();
+        productos.setVisible(true);
+        productos.idcajero=cajero;
+        productos.ncajero=jLabel2.getText();
+        Productos.jLabel2.setText(jLabel2.getText());
         this.dispose();
     }//GEN-LAST:event_Producto_NuevoActionPerformed
 

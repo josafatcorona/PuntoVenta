@@ -9,9 +9,12 @@ import java.awt.FileDialog;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import jbarcodebean.JBarcodeBean;
+import modelo.product_code;
 import net.sourceforge.jbarcodebean.model.Interleaved25;
 
 
@@ -90,6 +93,7 @@ public class RegistrarProductos extends javax.swing.JFrame {
         cod = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         labelcode = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
@@ -182,6 +186,7 @@ public class RegistrarProductos extends javax.swing.JFrame {
         });
         jPanel1.add(venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 190, 20));
 
+        cant.setText("Cantidad de producto por envase");
         cant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cantMouseClicked(evt);
@@ -234,15 +239,18 @@ public class RegistrarProductos extends javax.swing.JFrame {
                 GenerarActionPerformed(evt);
             }
         });
-        jPanel1.add(Generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 70, -1));
+        jPanel1.add(Generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 80, -1));
         jPanel1.add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 190, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("*Cantidad ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, -1));
+        jLabel13.setText("*Cantidad/envase ");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 120, -1));
         jPanel1.add(labelcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 290, 60));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 480, 370));
+        jLabel11.setText("grs/mls/pzs");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 490, 370));
 
         jLabel2.setText("(Por empaque)");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, -1, -1));
@@ -284,6 +292,7 @@ public class RegistrarProductos extends javax.swing.JFrame {
     }
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
          productos mod=new productos();
+         product_code code =  new product_code();
          int punto=0;
          Sqlproductos sqlmod=new Sqlproductos();
          for(int s=0;s<=cant.getText().length()-1;s++){
@@ -322,12 +331,17 @@ public class RegistrarProductos extends javax.swing.JFrame {
             mod.setCantidad(Double.parseDouble(cant.getText()));
             mod.setEntrada(Integer.parseInt(ent.getText()));
             sqlmod.AgregarProducto(mod);
+            
              if(g){
                 try{
                     FileDialog ventana= new FileDialog(RegistrarProductos.this,"Guardar imagen", FileDialog.SAVE);
                     ventana.show();
                     File cb= new File(ventana.getDirectory()+ventana.getFile()+".png");
                     ImageIO.write(imagen, "png", cb);
+                    code.setId(mod.getId());
+                    code.setNombre(mod.getNombre()); 
+                    code.setImagen(cb.getAbsolutePath());
+                    sqlmod.AgregarCodigo(code);
                     
                 }catch(Exception e){
                   System.out.println(e);  
@@ -361,16 +375,6 @@ public class RegistrarProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void cantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantKeyTyped
-       char caracter=evt.getKeyChar();
-     /*  if(c<'0' || c>'9' || c!='.') evt.consume();*/
-       if(((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)
-                                && (caracter !='.')){
-                /* lo que deseo colocar aqui es si ya se pulso el caracter (.) el mismo no se pueda repetir*/
-                evt.consume();}
-       
-    }//GEN-LAST:event_cantKeyTyped
-
     private void ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ventaActionPerformed
@@ -399,10 +403,6 @@ public class RegistrarProductos extends javax.swing.JFrame {
         ganancia.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_gananciaMouseClicked
 
-    private void cantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cantMouseClicked
-        cant.setText("");        // TODO add your handling code here:
-    }//GEN-LAST:event_cantMouseClicked
-
     private void entMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entMouseClicked
         ent.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_entMouseClicked
@@ -419,6 +419,20 @@ public class RegistrarProductos extends javax.swing.JFrame {
          g=true;
          
     }//GEN-LAST:event_GenerarActionPerformed
+
+    private void cantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantKeyTyped
+        char caracter=evt.getKeyChar();
+        /*  if(c<'0' || c>'9' || c!='.') evt.consume();*/
+        if(((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)
+            && (caracter !='.')){
+            /* lo que deseo colocar aqui es si ya se pulso el caracter (.) el mismo no se pueda repetir*/
+            evt.consume();}
+
+    }//GEN-LAST:event_cantKeyTyped
+
+    private void cantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cantMouseClicked
+        cant.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_cantMouseClicked
        
 
     /**
@@ -468,6 +482,7 @@ public class RegistrarProductos extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;

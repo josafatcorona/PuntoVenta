@@ -17,6 +17,7 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
     String vhora, minutos, segundos, ampm,fechac;
     Calendar calendario;
     Thread  h1;
+    public static String cds;
    public static int cuenta=0,i=-1,articulos=0;
    public static String codigo="";
     public RegistrarCompra() {     
@@ -457,11 +458,13 @@ Double cambio;
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       BuscarProductos bp= new BuscarProductos();   
+       BuscarProductos bp;
+       bp = new BuscarProductos(this,true);
        bp.ncajero=cajero.getText();
        bp.idcajero=idcajero;
        bp.setVisible(true);  
-       this.dispose();
+       bp.registrar=this;
+      // this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
     private void cuenta(){
         Double cuenta2=0.0;
@@ -498,8 +501,9 @@ Double cambio;
   }
     /****/
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-
-        String cds=cod12.getText();   
+        if(cod12.getText() != null){
+          cds=cod12.getText();    
+        }         
         int exist;
         exist=registrado(cds);
         if(exist==-15)/*-15 es el valor de la variable dque regresa el metodo cuando existe el producto*/{
@@ -542,7 +546,10 @@ Double cambio;
         cuenta();
         
     }//GEN-LAST:event_AgregarActionPerformed
-
+    public void AddCompra(){
+        this.AgregarActionPerformed(null);
+        
+    }
     private void cajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajeroActionPerformed

@@ -4,19 +4,26 @@ package form;
 import form.EliminarProducto;
 import form.RegistrarCompra;
 import static java.lang.System.exit;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Sqlproductos;
 import modelo.productos;
 
 
-public class BuscarProductos extends javax.swing.JFrame {
+public class BuscarProductos extends  JDialog {
 //variables
     public String ncajero,idcajero;
+    public RegistrarCompra registrar;
     int selec;
-    public BuscarProductos() {
+    public BuscarProductos(RegistrarCompra compra, boolean modal) {
+        super(compra,modal);
         initComponents();        
         this.setLocationRelativeTo(null);
+    }
+
+    private BuscarProductos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
@@ -36,7 +43,6 @@ public class BuscarProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         BAgregar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         BRegresa = new javax.swing.JButton();
 
@@ -139,15 +145,6 @@ public class BuscarProductos extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Modificar producto");
-        jButton3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setText("Eliminar");
         jButton4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -173,8 +170,7 @@ public class BuscarProductos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(BAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BRegresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -184,9 +180,7 @@ public class BuscarProductos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(206, 206, 206)
                 .addComponent(BAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(125, 125, 125)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(BRegresa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,41 +215,17 @@ RegistrarCompra rc2=new RegistrarCompra();
       }
     }//GEN-LAST:event_BbuscarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      ActualizarDatosProductos ad= new ActualizarDatosProductos();
-      String[] datos=new String[5];     
-      Sqlproductos sqlmod=new Sqlproductos();
-      selec= tbuscar.getSelectedRow();
-      if(selec<0){     
-        JOptionPane.showMessageDialog(rootPane, "No has seleccionado ningun producto para ");
-      }else{       
-        String codi=String.valueOf(tbuscar.getValueAt(selec, 0));        
-        datos=sqlmod.busca_productos(codi);        
-        ad.codigoproducto.setText(codi);
-        ad.nombre.setText(datos[1]);
-        ad.pcompra.setText(datos[2]);
-        ad.pventa.setText(datos[3]);
-        ad.entrada.setText("0");
-        ad.idcajero=idcajero;
-        ad.ncajero=ncajero;
-        ad.producto=String.valueOf(tbuscar.getValueAt(selec, 0));
-        ad.codigo=codi;
-        ad.setVisible(true);  
-        this.dispose();   
-    }  
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void BRegresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BRegresaActionPerformed
-        RegistrarCompra reg=new RegistrarCompra();
-        reg.i=-1;
-        reg.cuenta=0;
-        reg.cajero.setText(ncajero);
-        reg.idcajero=idcajero;        
-        reg.setVisible(true);
+        //RegistrarCompra reg=new RegistrarCompra();
+        //reg.i=-1;
+        //reg.cuenta=0;
+        //reg.cajero.setText(ncajero);
+        //reg.idcajero=idcajero;        
+        //reg.setVisible(true);
         this.dispose(); 
              
     }//GEN-LAST:event_BRegresaActionPerformed
@@ -299,13 +269,14 @@ RegistrarCompra rc2=new RegistrarCompra();
     private void BAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarActionPerformed
         selec=tbuscar.getSelectedRow();
         if(selec<0){
-        JOptionPane.showMessageDialog(rootPane, "No has seleccionado nada");
+            JOptionPane.showMessageDialog(rootPane, "No has seleccionado nada");
         }else{
-            Sqlproductos sqlmod=new Sqlproductos();
-            if(sqlmod.agregalmacen(String.valueOf(tbuscar.getValueAt(selec, 0)))){
-                limpiartabla();
-            }
-        
+            Sqlproductos sqlmod=new Sqlproductos();           
+            registrar.cds=String.valueOf(tbuscar.getValueAt(selec, 0));  
+            System.out.println(String.valueOf(tbuscar.getValueAt(selec, 0)));
+            registrar.AddCompra();
+            registrar.repaint();
+            System.out.println(selec);
         }
     }//GEN-LAST:event_BAgregarActionPerformed
 
@@ -358,7 +329,6 @@ RegistrarCompra rc2=new RegistrarCompra();
     private javax.swing.JButton BRegresa;
     private javax.swing.JButton Bbuscar;
     private javax.swing.JTextField cod2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;

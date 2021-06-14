@@ -6,19 +6,25 @@
 package form;
 
 import form.BuscarProductos;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import modelo.Sqlproductos;
 import modelo.productos;
 
-public class ActualizarDatosProductos extends javax.swing.JFrame {
+public class ActualizarDatosProductos extends JDialog {
     //variables
    public String idcajero,ncajero,producto,codigo;
    int resp;
     
-    public ActualizarDatosProductos() {
+    public ActualizarDatosProductos(ListaProductos listaProductos, boolean modal) {
+        super(listaProductos, modal);        
         initComponents();       
         this.setLocationRelativeTo(null);
     }
+
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,7 +101,7 @@ public class ActualizarDatosProductos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(450, 380, 130, 40);
+        jButton2.setBounds(460, 390, 130, 40);
 
         entrada.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(entrada);
@@ -139,8 +145,7 @@ public class ActualizarDatosProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        productos mod=new productos();
-        BuscarProductos bp= new BuscarProductos();
+        productos mod=new productos();        
         Sqlproductos sqlmod=new Sqlproductos();
         if(codigoproducto.equals("") && nombre.equals("") && pcompra.equals("") && pventa.equals("") && entrada.equals("")){
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
@@ -150,22 +155,16 @@ public class ActualizarDatosProductos extends javax.swing.JFrame {
             mod.setNombre(nombre.getText());
             mod.setPventa(Double.parseDouble(pventa.getText()));
             mod.setP_compra(Double.parseDouble(pcompra.getText()));
-            sqlmod.actualizadatos(mod, codigo);
-            bp.idcajero=idcajero;
-            bp.ncajero=ncajero;
-            bp.setVisible(true);
+            sqlmod.actualizadatos(mod, codigo);            
             this.dispose();
+            
         }             
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        BuscarProductos bp= new BuscarProductos();
         resp=JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea salir?", "Alerta", JOptionPane.YES_NO_OPTION);
-        if(resp==0){
-        bp.idcajero=idcajero;
-        bp.ncajero=ncajero;
-        bp.setVisible(true);
-        this.dispose(); 
+        if(resp==0){            
+            this.dispose(); 
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -205,7 +204,8 @@ public class ActualizarDatosProductos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ActualizarDatosProductos().setVisible(true);
+                
+                new ActualizarDatosProductos(null, false).setVisible(true);
             }
         });
     }

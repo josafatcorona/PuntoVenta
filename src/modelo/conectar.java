@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class conectar {
@@ -37,4 +40,13 @@ public class conectar {
     Statement createStatement() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public void cierraConexion() {
+    try {
+        conn.close();
+        System.out.println("Conexion finalizada");
+    } catch (SQLException sqle) {
+        JOptionPane.showMessageDialog(null, "Error al cerrar conexion", "Error", JOptionPane.ERROR_MESSAGE);
+        
+    }
+}
 }
