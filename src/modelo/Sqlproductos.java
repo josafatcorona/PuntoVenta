@@ -51,6 +51,7 @@ public class Sqlproductos extends conectar {
            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ese código ya está registrado");
+            System.out.println(ex);
         }   
    }
     public void AgregarCodigo(product_code item) {
@@ -77,6 +78,7 @@ public class Sqlproductos extends conectar {
            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ese código ya está registrado");
+            System.out.println(ex);
         }   
    }
    

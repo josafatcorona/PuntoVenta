@@ -137,4 +137,28 @@ public boolean repetido(users usr){
      }
    return exis; 
 }
+
+public boolean esAdmin(users usr){
+    sql="select * from usuarios where User='"+usr.getUser()+"'";    
+    try{             
+           Statement st=cn.createStatement();
+           ResultSet rs =st.executeQuery(sql);             
+           if(rs.next()){ 
+               if(rs.getString("Admin").equals("1")){
+                  return true;  
+               }else{
+                   return false;
+               }
+                  
+           }
+           else{
+               return false;
+           }
+     
+    }catch(SQLException ex){
+         Logger.getLogger(Inicio_sesion.class.getName()).log(Level.SEVERE,null,ex);
+         return false;
+     }
+
+}
 }

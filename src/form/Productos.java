@@ -16,92 +16,109 @@ public class Productos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         Lista_Producto = new javax.swing.JButton();
         Producto_Nuevo = new javax.swing.JButton();
         Regresar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 550));
+        setMinimumSize(new java.awt.Dimension(850, 550));
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LOGO.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 30, 190, 100);
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(690, 10, 130, 30);
 
-        Lista_Producto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        Lista_Producto.setBackground(new java.awt.Color(255, 255, 255));
+        Lista_Producto.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         Lista_Producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box (2).png"))); // NOI18N
         Lista_Producto.setText("Lista de Productos");
-        Lista_Producto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Lista_Producto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(86, 249, 33)));
         Lista_Producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Lista_ProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(Lista_Producto);
-        Lista_Producto.setBounds(120, 160, 400, 70);
 
-        Producto_Nuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Producto_Nuevo.setBackground(new java.awt.Color(255, 255, 255));
+        Producto_Nuevo.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         Producto_Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box (2).png"))); // NOI18N
         Producto_Nuevo.setText("Registrar Producto");
-        Producto_Nuevo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Producto_Nuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(86, 249, 33)));
         Producto_Nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Producto_NuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(Producto_Nuevo);
-        Producto_Nuevo.setBounds(120, 290, 400, 70);
 
-        Regresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Regresar.setBackground(new java.awt.Color(255, 255, 255));
+        Regresar.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         Regresar.setText("Regresar");
-        Regresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Regresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(86, 249, 33)));
         Regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(Regresar);
-        Regresar.setBounds(530, 480, 70, 30);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel10.setText("SELECCIONE UNA OPCIÓN ");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(290, 50, 340, 44);
+        jLabel10.setText("SELECCIONA UNA OPCIÓN ");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Producto_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Lista_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(Lista_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(Producto_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(200, 0, 650, 530);
+
+        jPanel1.setBackground(new java.awt.Color(86, 249, 33));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(510, 0, 140, 40);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo1.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-110, -20, 870, 580);
+        jPanel1.setBounds(0, -10, 200, 550);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,11 +160,10 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JButton Lista_Producto;
     private javax.swing.JButton Producto_Nuevo;
     private javax.swing.JButton Regresar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
      // String n,u;
  

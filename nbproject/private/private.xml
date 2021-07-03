@@ -13,15 +13,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/Inicio_sesion.java</file>
-            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/modelo/productos.java</file>
-            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/Cobrar.java</file>
+            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/RegistrarProductos.java</file>
             <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/RegistrarCompra.java</file>
-            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/ImprimirTicket.java</file>
+            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/BuscarProductos.java</file>
+            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/Productos.java</file>
             <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/modelo/sqlventas.java</file>
+            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/ListaProductos.java</file>
             <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/modelo/Sqlproductos.java</file>
-            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/modelo/conectar.java</file>
-            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/modelo/Sqlusers.java</file>
-            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/test/modelo/sqlventasTest.java</file>
+            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/ListaImagen.java</file>
+            <file>file:/C:/Users/josaf/Documents/NetBeansProjects/APVERDE/src/form/VentasDelDia.java</file>
         </group>
     </open-files>
 </project-private>

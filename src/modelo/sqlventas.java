@@ -125,7 +125,7 @@ public void detalle_ventas(String venta){
 
 public void registracompra(String idcajero,int nventa,String fecha, Double total){
     
-    sql="Insert into ventas (id,Cajero,Fecha,Total) values (?,?,?,?)";
+    sql="Insert into ventas (id,Cajero,Fecha,Total,Tipo) values (?,?,?,?,?)";
     sql2="Insert into detalles_ventas (id_Venta,id_Producto,cantidad,Precio_Unitario,Precio_Total)values(?,?,?,?,?)";
     int n2=0;
       try {
@@ -135,6 +135,7 @@ public void registracompra(String idcajero,int nventa,String fecha, Double total
             ps.setString(2,idcajero);
             ps.setString(3,fecha);
             ps.setString(4,total.toString());
+            ps.setString(5,"E");
             int i=0;
             int n3=0; 
             n= ps.executeUpdate();
@@ -202,6 +203,7 @@ public Double aumento(String codigo){
  return aum;       
 }
 public void eliminarventa(String folio){
+    regresarProducto(folio);
     sql="Delete from Ventas where id='"+folio+"'";
     sql2="Delete from detalles_ventas where id_Venta='"+folio+"'";
     try {
@@ -214,6 +216,17 @@ public void eliminarventa(String folio){
         System.out.println(e);
     }
     
+}
+public void regresarProducto(String folio){
+    sql="Select * from detalles_ventas where id_Venta='"+folio+"'";
+    try {
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next()){
+            
+        }
+    } catch (Exception e) {
+    }
 }
 
 

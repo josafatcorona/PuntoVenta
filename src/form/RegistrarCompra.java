@@ -11,6 +11,9 @@ import modelo.Sqlproductos;
 import modelo.productos;
 import modelo.sqlventas;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.sendMail;
 
 public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
     //variables para la hora
@@ -47,7 +50,6 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        cajero = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -83,11 +85,11 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
         hora = new javax.swing.JLabel();
         fecha = new javax.swing.JLabel();
         regresar = new javax.swing.JButton();
+        cajero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(getMaximumSize());
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(540, 600));
         setSize(new java.awt.Dimension(1250, 940));
         getContentPane().setLayout(null);
 
@@ -101,13 +103,7 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
         jLabel10.setForeground(new java.awt.Color(0, 102, 0));
         jLabel10.setText("AGRO PUNTO VERDE");
 
-        cajero.setEditable(false);
-        cajero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajeroActionPerformed(evt);
-            }
-        });
-
+        jLabel1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jLabel1.setText("Le atiende: ");
 
         jLabel2.setForeground(new java.awt.Color(0, 102, 0));
@@ -263,6 +259,8 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        cajero.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -328,10 +326,10 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(cajero, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(192, 192, 192))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cajero, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,12 +337,14 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(cajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(54, 54, 54)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -396,25 +396,28 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- public static boolean cierra=false;     
-     Cobrar co= new Cobrar();  
-public String idcajero="";
-float cant;
-Double cambio;
+
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        Principal p= new Principal();
+        p.setVisible(true);
+        p.jLabel2.setText(cajero.getText());
+        p.cajero=idcajero;
+        this.hide();
+    }//GEN-LAST:event_regresarActionPerformed
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
         Sqlproductos mod=new Sqlproductos();
         if(!"0.0".equals(total.getText())){
             String valida = JOptionPane.showInputDialog(null,"Cantidad pagada");
-            
-            if(mod.esnumero(valida)){ 
+
+            if(mod.esnumero(valida)){
                 cant=Float.parseFloat(valida);
                 if(cant>=Double.parseDouble(total.getText())){
                     co.total.setText(total.getText());
-                    co.pago.setText(String.valueOf(cant));        
+                    co.pago.setText(String.valueOf(cant));
                     cambio=cant-Double.parseDouble(total.getText());
                     co.cambio.setText(String.valueOf(cambio));
-                    co.setVisible(true);  
+                    co.setVisible(true);
                     co.nceldas=t2.getRowCount();
                     Date fechaHoraActual= new Date();
                     Calendar calendario=new GregorianCalendar();
@@ -429,16 +432,30 @@ Double cambio;
                     for(int i=0;i<=t2.getRowCount()-1;i++){
                         for(int i2=0;i2<=4;i2++){
                             datos[i][i2]=String.valueOf(t2.getValueAt(i,i2));
-                        }  
+                        }
                     }
                     co.datosventa=datos;
-               } else {
-                   JOptionPane.showMessageDialog(rootPane, "La cantidad pagada no puede ser menor que el total");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "La cantidad pagada no puede ser menor que el total");
                 }
             }else{JOptionPane.showMessageDialog(rootPane, "Debe introducir numeros");}
-       }else{
-           JOptionPane.showMessageDialog(null, "Aún no has escogido ningún producto");
-       }   
+        }else{
+            JOptionPane.showMessageDialog(null, "Aún no has escogido ningún producto");
+        }
+        //Enviar mail con info
+        // sendMail mail = new sendMail();
+        /* mail.setMyAccount("ventas.agropuntoverde@gmail.com");
+        mail.setPassword("agro@verde");
+        mail.setAccount("josafatcoronac@gmail.com");
+        mail.setText("My mail\n from java app");
+
+        try {
+            mail.sendMail();
+        } catch (Exception ex) {
+            Logger.getLogger(RegistrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        // mail.enviarMail();
+
     }//GEN-LAST:event_finalizarActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -458,14 +475,27 @@ Double cambio;
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       BuscarProductos bp;
-       bp = new BuscarProductos(this,true);
-       bp.ncajero=cajero.getText();
-       bp.idcajero=idcajero;
-       bp.setVisible(true);  
-       bp.registrar=this;
-      // this.dispose();
+        BuscarProductos bp;
+        bp = new BuscarProductos(this,true);
+        bp.ncajero=cajero.getText();
+        bp.idcajero=idcajero;
+        bp.setVisible(true);
+        bp.registrar=this;
+        // this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+//GEN-FIRST:event_AgregarActionPerformed
+ 
+//GEN-LAST:event_AgregarActionPerformed
+
+    private void AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarMouseClicked
+
+    }//GEN-LAST:event_AgregarMouseClicked
+ public static boolean cierra=false;     
+     Cobrar co= new Cobrar();  
+public String idcajero="";
+float cant;
+Double cambio;
     private void cuenta(){
         Double cuenta2=0.0;
         int articulos2=0;
@@ -499,73 +529,10 @@ Double cambio;
 		return false;
 	}
   }
-    /****/
-    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        if(cod12.getText() != null){
-          cds=cod12.getText();    
-        }         
-        int exist;
-        exist=registrado(cds);
-        if(exist==-15)/*-15 es el valor de la variable dque regresa el metodo cuando existe el producto*/{
-                Sqlproductos sqlmod=new Sqlproductos();
-                productos mod=new productos();
-                mod.setId(cds);
-                String info[]=new String[5];
-                info=sqlmod.agregarventa(mod);
-                if(!info[0].equals("NO") && !info[0].equals("N") && !info[0].equals("IN") &&!info[0].equals("LETRA")){
-                    DefaultTableModel modelo= new DefaultTableModel();
-                    modelo=(DefaultTableModel) t2.getModel();
-                    modelo.addRow(info);
-                    //int fila=modelo.getRowCount();
-                    i=i+1;
-                }
-                else if(info[0].equals("N")){
-                    JOptionPane.showMessageDialog(null, "Ingresa un valor mayor a 0");
-                }else if(info[0].equals("IN")){
-                    JOptionPane.showMessageDialog(null, "Cantidad de articulos insuficiente");
-                }else if(info[0].equals("LETRA")){
-                    JOptionPane.showMessageDialog(null, "Debe introducir numeros"); 
-                }else{
-                    JOptionPane.showMessageDialog(null, "No se encontró el producto"); 
-                }
-        }else{
-                 String valida = JOptionPane.showInputDialog(null,"Ingresa el numero de productos");
-                 if(esnumero(valida)){
-                     int can=0;
-                     Double cuen=0.0;
-                     can=Integer.parseInt(String.valueOf(t2.getValueAt(exist, 3)));
-                     can+=Integer.parseInt(valida);
-                     cuen=can*Double.parseDouble(String.valueOf(t2.getValueAt(exist, 2)));
-                     t2.setValueAt(can, exist, 3);
-                     t2.setValueAt(cuen,exist,4);
-                     cuenta();
-                 }
-        }
-        cod12.setText("");  
-        cod12.requestFocus();
-        cuenta();
-        
-    }//GEN-LAST:event_AgregarActionPerformed
-    public void AddCompra(){
+   public void AddCompra(){
         this.AgregarActionPerformed(null);
         
-    }
-    private void cajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajeroActionPerformed
-
-    private void AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarMouseClicked
-     
-    }//GEN-LAST:event_AgregarMouseClicked
-
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-       Principal p= new Principal();        
-       p.setVisible(true);
-       p.jLabel2.setText(cajero.getText());
-       p.cajero=idcajero;
-        this.hide();
-    }//GEN-LAST:event_regresarActionPerformed
-void datosbd(){
+    }void datosbd(){
      String[] datosbd=new String[4];
        datosbd[0]=JOptionPane.showInputDialog(rootPane, "Usuario");
        datosbd[1]=JOptionPane.showInputDialog(rootPane, "Contraseña");
@@ -627,7 +594,7 @@ void datosbd(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton Agregar;
+    private javax.swing.JButton Agregar;
     public javax.swing.JTextField cajero;
     private javax.swing.JTextField cod12;
     private javax.swing.JLabel fecha;
@@ -646,7 +613,7 @@ void datosbd(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    public static javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
@@ -658,7 +625,7 @@ void datosbd(){
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField nticket;
     private javax.swing.JButton regresar;
-    public javax.swing.JTable t2;
+    private javax.swing.JTable t2;
     private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
   
@@ -695,5 +662,9 @@ void datosbd(){
         minutos=calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
         segundos=calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
         
+    }
+
+    private void AgregarActionPerformed(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
