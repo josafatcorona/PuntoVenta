@@ -172,7 +172,7 @@ public class VentasDelDia extends javax.swing.JFrame {
             }
         });
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel6.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -325,7 +325,7 @@ public class VentasDelDia extends javax.swing.JFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
-        jPanel7.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel7.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);

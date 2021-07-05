@@ -88,6 +88,7 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
         cajero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Ventas");
         setMinimumSize(getMaximumSize());
         setUndecorated(true);
         setSize(new java.awt.Dimension(1250, 940));
@@ -485,7 +486,52 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_jButton4ActionPerformed
 
 //GEN-FIRST:event_AgregarActionPerformed
- 
+ private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        if(cod12.getText() != null){
+          cds=cod12.getText();    
+        }         
+        int exist;
+        exist=registrado(cds);
+        if(exist==-15)/*-15 es el valor de la variable dque regresa el metodo cuando existe el producto*/{
+                Sqlproductos sqlmod=new Sqlproductos();
+                productos mod=new productos();
+                mod.setId(cds);
+                String info[]=new String[5];
+                info=sqlmod.agregarventa(mod);
+                if(!info[0].equals("NO") && !info[0].equals("N") && !info[0].equals("IN") &&!info[0].equals("LETRA")){
+                    DefaultTableModel modelo= new DefaultTableModel();
+                    modelo=(DefaultTableModel) t2.getModel();
+                    modelo.addRow(info);
+                    //int fila=modelo.getRowCount();
+                    i=i+1;
+                }
+                else if(info[0].equals("N")){
+                    JOptionPane.showMessageDialog(null, "Ingresa un valor mayor a 0");
+                }else if(info[0].equals("IN")){
+                    JOptionPane.showMessageDialog(null, "Cantidad de articulos insuficiente");
+                }else if(info[0].equals("LETRA")){
+                    JOptionPane.showMessageDialog(null, "Debe introducir numeros"); 
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se encontró el producto"); 
+                }
+        }else{
+                 String valida = JOptionPane.showInputDialog(null,"Ingresa el numero de productos");
+                 if(esnumero(valida)){
+                     int can=0;
+                     Double cuen=0.0;
+                     can=Integer.parseInt(String.valueOf(t2.getValueAt(exist, 3)));
+                     can+=Integer.parseInt(valida);
+                     cuen=can*Double.parseDouble(String.valueOf(t2.getValueAt(exist, 2)));
+                     t2.setValueAt(can, exist, 3);
+                     t2.setValueAt(cuen,exist,4);
+                     cuenta();
+                 }
+        }
+        cod12.setText("");  
+        cod12.requestFocus();
+        cuenta();
+        
+    }               
 //GEN-LAST:event_AgregarActionPerformed
 
     private void AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarMouseClicked
@@ -594,7 +640,7 @@ Double cambio;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Agregar;
+    public static javax.swing.JButton Agregar;
     public javax.swing.JTextField cajero;
     private javax.swing.JTextField cod12;
     private javax.swing.JLabel fecha;
@@ -613,7 +659,7 @@ Double cambio;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
@@ -625,7 +671,7 @@ Double cambio;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField nticket;
     private javax.swing.JButton regresar;
-    private javax.swing.JTable t2;
+    public javax.swing.JTable t2;
     private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
   

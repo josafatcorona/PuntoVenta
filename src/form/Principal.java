@@ -32,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Principal");
         setMinimumSize(new java.awt.Dimension(875, 550));
         setUndecorated(true);
         getContentPane().setLayout(null);
@@ -93,7 +94,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(86, 249, 33));
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apv.png"))); // NOI18N
 

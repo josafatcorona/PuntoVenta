@@ -104,7 +104,7 @@ public class Productos extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(200, 0, 650, 530);
 
-        jPanel1.setBackground(new java.awt.Color(86, 249, 33));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

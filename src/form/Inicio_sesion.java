@@ -113,7 +113,7 @@ public class Inicio_sesion extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(310, 0, 540, 270);
 
-        jPanel2.setBackground(new java.awt.Color(86, 249, 33));
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apv.png"))); // NOI18N
 

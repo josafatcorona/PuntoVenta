@@ -143,7 +143,7 @@ public class BuscarProductos extends  JDialog {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(210, 0, 710, 540);
 
-        jPanel1.setBackground(new java.awt.Color(86, 249, 33));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apv.png"))); // NOI18N
 

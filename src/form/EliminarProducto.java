@@ -90,7 +90,7 @@ public class EliminarProducto extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(86, 249, 33));
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
