@@ -29,7 +29,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import jbarcodebean.JBarcodeBean;
 import modelo.Sqlproductos;
+import modelo.Sqlusers;
 import modelo.conectar;
+import modelo.users;
 import net.sourceforge.jbarcodebean.model.Interleaved25;
 
 /**
@@ -289,87 +291,101 @@ JBarcodeBean barcode= new  JBarcodeBean();
     }//GEN-LAST:event_jtxtFiltroMousePressed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        EliminarProducto ep= new EliminarProducto();
-        Sqlproductos sqlmod=new Sqlproductos();
-        String[] datos=new String[5];
-        select= tableProductos.getSelectedRow();
-        if(select<0){
-            JOptionPane.showMessageDialog(rootPane, "No has seleccionado ningun producto para eliminar");
+         Sqlusers users = new Sqlusers();
+        users usr = new users();
+        usr.setUser(idcajero);
+        if(users.esAdmin(usr)){
+            EliminarProducto ep= new EliminarProducto();
+            Sqlproductos sqlmod=new Sqlproductos();
+            String[] datos=new String[5];
+            select= tableProductos.getSelectedRow();
+            if(select<0){
+                JOptionPane.showMessageDialog(rootPane, "No has seleccionado ningun producto para eliminar");
+            }else{
+                String codi=String.valueOf(tableProductos.getValueAt(select, 0));
+                datos=sqlmod.busca_productos(codi);
+                ep.codigoproducto.setText(codi);
+                ep.nombre.setText(datos[1]);
+                ep.precio.setText(datos[3]);
+                ep.existencia.setText(datos[4]);
+                ep.setVisible(true);
+            }
+            listaProductos();
         }else{
-            String codi=String.valueOf(tableProductos.getValueAt(select, 0));
-            datos=sqlmod.busca_productos(codi);
-            ep.codigoproducto.setText(codi);
-            ep.nombre.setText(datos[1]);
-            ep.precio.setText(datos[3]);
-            ep.existencia.setText(datos[4]);
-            ep.setVisible(true);
+            JOptionPane.showMessageDialog(rootPane, "Esta acción solo puede realizarce por el administrador");
         }
-        listaProductos();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        ActualizarDatosProductos ad;
-        ad = new ActualizarDatosProductos(this,true);
+        Sqlusers users = new Sqlusers();
+        users usr = new users();
+        usr.setUser(idcajero);
+        if(users.esAdmin(usr)){
+            ActualizarDatosProductos ad;
+            ad = new ActualizarDatosProductos(this,true);
 
-        String[] datos=new String[5];
-        Sqlproductos sqlmod=new Sqlproductos();
-        select= tableProductos.getSelectedRow();
-        if(select<0){
-            JOptionPane.showMessageDialog(rootPane, "No has seleccionado ningun producto para ");
+            String[] datos=new String[5];
+            Sqlproductos sqlmod=new Sqlproductos();
+            select= tableProductos.getSelectedRow();
+            if(select<0){
+                JOptionPane.showMessageDialog(rootPane, "No has seleccionado ningun producto para ");
+            }else{
+                String codi=String.valueOf(tableProductos.getValueAt(select, 0));
+                datos=sqlmod.busca_productos(codi);
+                ad.codigoproducto.setText(codi);
+                ad.nombre.setText(datos[1]);
+                ad.pcompra.setText(datos[2]);
+                ad.pventa.setText(datos[3]);
+                ad.entrada.setText("0");
+                ad.idcajero=idcajero;
+                ad.ncajero=ncajero;
+                ad.producto=String.valueOf(tableProductos.getValueAt(select, 0));
+                ad.codigo=codi;
+                ad.setVisible(true);
+                System.out.println("New: "+ad.getKeyListeners());
+                ad.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowOpened(WindowEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        listaProductos();
+                        System.out.println("Closed");
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        vaciarTabla();
+                        listaProductos();
+                        System.out.println("Closing");
+                    }
+                });
+
+            }
         }else{
-            String codi=String.valueOf(tableProductos.getValueAt(select, 0));
-            datos=sqlmod.busca_productos(codi);
-            ad.codigoproducto.setText(codi);
-            ad.nombre.setText(datos[1]);
-            ad.pcompra.setText(datos[2]);
-            ad.pventa.setText(datos[3]);
-            ad.entrada.setText("0");
-            ad.idcajero=idcajero;
-            ad.ncajero=ncajero;
-            ad.producto=String.valueOf(tableProductos.getValueAt(select, 0));
-            ad.codigo=codi;
-            ad.setVisible(true);
-            System.out.println("New: "+ad.getKeyListeners());
-            ad.addWindowListener(new WindowListener() {
-                @Override
-                public void windowOpened(WindowEvent e) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    listaProductos();
-                    System.out.println("Closed");
-                }
-
-                @Override
-                public void windowIconified(WindowEvent e) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void windowDeiconified(WindowEvent e) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void windowActivated(WindowEvent e) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void windowDeactivated(WindowEvent e) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    vaciarTabla();
-                    listaProductos();
-                    System.out.println("Closing");
-                }
-            });
-
+             JOptionPane.showMessageDialog(rootPane, "Esta acción solo puede realizarce por el administrador");
         }
     }//GEN-LAST:event_updateButtonActionPerformed
  public String ncajero,idcajero;

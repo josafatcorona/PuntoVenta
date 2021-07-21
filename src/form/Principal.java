@@ -240,12 +240,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void Producto_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Producto_NuevoActionPerformed
-        Productos productos=new Productos();
-        productos.setVisible(true);
-        productos.idcajero=cajero;
-        productos.ncajero=jLabel2.getText();
-        Productos.jLabel2.setText(jLabel2.getText());
-        this.dispose();
+       
+            Productos productos=new Productos();
+            productos.setVisible(true);
+            productos.idcajero=cajero;
+            productos.ncajero=jLabel2.getText();
+            Productos.jLabel2.setText(jLabel2.getText());
+            this.dispose(); 
+        
+        
     }//GEN-LAST:event_Producto_NuevoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

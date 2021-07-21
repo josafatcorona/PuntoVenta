@@ -43,103 +43,107 @@ public class ActualizarDatosProductos extends JDialog {
         pventa = new javax.swing.JTextField();
         codigoproducto = new java.awt.TextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 500));
+        setMinimumSize(new java.awt.Dimension(791, 463));
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 102, 0));
         jLabel10.setText("MODIFICAR PRODUCTO");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(340, 50, 310, 44);
+        jLabel10.setBounds(260, 30, 310, 44);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabel2.setText("*Nombre");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 210, 55, 10);
+        jLabel2.setBounds(280, 200, 70, 10);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabel3.setText("*Precio compra");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(150, 240, 94, 20);
+        jLabel3.setBounds(280, 230, 110, 20);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabel4.setText("*Precio venta");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(150, 280, 84, 20);
+        jLabel4.setBounds(280, 270, 100, 20);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabel5.setText("*Entrada (producto nuevo)");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(150, 310, 169, 30);
+        jLabel5.setBounds(270, 300, 190, 30);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabel6.setText("Codigo producto: ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(150, 140, 120, 20);
+        jLabel6.setBounds(280, 130, 130, 20);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jButton1.setText("Guardar");
-        jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 153)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(90, 390, 130, 40);
+        jButton1.setBounds(230, 380, 130, 40);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
-        jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 153)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(460, 390, 130, 40);
+        jButton2.setBounds(600, 380, 130, 40);
 
-        entrada.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        entrada.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         getContentPane().add(entrada);
-        entrada.setBounds(360, 310, 160, 30);
+        entrada.setBounds(460, 300, 200, 30);
 
-        nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nombre.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         getContentPane().add(nombre);
-        nombre.setBounds(360, 190, 160, 30);
+        nombre.setBounds(460, 180, 200, 30);
 
-        pcompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pcompra.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         getContentPane().add(pcompra);
-        pcompra.setBounds(360, 230, 160, 30);
+        pcompra.setBounds(460, 220, 200, 30);
 
-        pventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pventa.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         getContentPane().add(pventa);
-        pventa.setBounds(360, 270, 160, 30);
+        pventa.setBounds(460, 260, 200, 30);
 
         codigoproducto.setEditable(false);
-        codigoproducto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        codigoproducto.setFont(new java.awt.Font("Montserrat Black", 1, 18)); // NOI18N
         codigoproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoproductoActionPerformed(evt);
             }
         });
         getContentPane().add(codigoproducto);
-        codigoproducto.setBounds(270, 140, 160, 30);
+        codigoproducto.setBounds(410, 130, 250, 30);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LOGO.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apv.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 30, 180, 90);
+        jLabel7.setBounds(30, 170, 110, 110);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/qq.jpg"))); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(710, 520));
-        jLabel1.setMinimumSize(new java.awt.Dimension(710, 520));
-        jLabel1.setPreferredSize(new java.awt.Dimension(710, 520));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -90, 690, 760);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(150, 0, 640, 460);
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 150, 470);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,7 +219,6 @@ public class ActualizarDatosProductos extends JDialog {
     public javax.swing.JTextField entrada;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -223,6 +226,8 @@ public class ActualizarDatosProductos extends JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     public javax.swing.JTextField nombre;
     public javax.swing.JTextField pcompra;
     public javax.swing.JTextField pventa;

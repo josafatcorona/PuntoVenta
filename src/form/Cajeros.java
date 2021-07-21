@@ -43,16 +43,16 @@ public class Cajeros extends javax.swing.JFrame {
         jButtonAgrega = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(700, 600));
+        setMinimumSize(new java.awt.Dimension(858, 493));
         setUndecorated(true);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
@@ -73,57 +73,64 @@ public class Cajeros extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 530, 200));
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(70, 190, 580, 200);
+        jPanel1.setBounds(240, 180, 580, 200);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 0));
         jLabel2.setText("CAJEROS REGISTRADOS");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(360, 50, 310, 44);
+        jLabel2.setBounds(300, 50, 310, 44);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jButton1.setText("Borrar");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 153)));
+        jButton1.setMaximumSize(new java.awt.Dimension(50, 20));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(80, 420, 70, 21);
+        jButton1.setBounds(230, 420, 180, 40);
 
-        jButtonAgrega.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonAgrega.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAgrega.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jButtonAgrega.setText("Agregar cajero");
-        jButtonAgrega.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonAgrega.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 153)));
+        jButtonAgrega.setMaximumSize(new java.awt.Dimension(50, 20));
         jButtonAgrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAgregaActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonAgrega);
-        jButtonAgrega.setBounds(300, 420, 130, 23);
+        jButtonAgrega.setBounds(440, 420, 180, 40);
 
-        jButtonRegresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonRegresar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonRegresar.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jButtonRegresar.setText("Regresar");
-        jButtonRegresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonRegresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 153)));
+        jButtonRegresar.setMaximumSize(new java.awt.Dimension(50, 20));
         jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegresarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonRegresar);
-        jButtonRegresar.setBounds(550, 420, 90, 21);
+        jButtonRegresar.setBounds(650, 420, 180, 40);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LOGO.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apv.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 20, 200, 110);
+        jLabel3.setBounds(40, 210, 140, 110);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/qq.jpg"))); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(750, 700));
-        jLabel1.setMinimumSize(new java.awt.Dimension(750, 700));
-        jLabel1.setPreferredSize(new java.awt.Dimension(700, 570));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 760, 630);
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 0, 170, 500);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(170, 0, 690, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -242,10 +249,11 @@ int resp;
     private javax.swing.JButton jButtonAgrega;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tbusuario;

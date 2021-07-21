@@ -3,6 +3,8 @@ package form;
 import static form.RegistarUsuario.idcajero;
 import static form.RegistarUsuario.ncajero;
 import javax.swing.JOptionPane;
+import modelo.Sqlusers;
+import modelo.users;
 
 public class Productos extends javax.swing.JFrame {
      
@@ -96,13 +98,13 @@ public class Productos extends javax.swing.JFrame {
                 .addComponent(Lista_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(Producto_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
                 .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(200, 0, 650, 530);
+        jPanel2.setBounds(200, 0, 650, 590);
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -114,11 +116,11 @@ public class Productos extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, -10, 200, 550);
+        jPanel1.setBounds(0, -10, 200, 580);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,11 +137,18 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     private void Producto_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Producto_NuevoActionPerformed
-        RegistrarProductos nuevop=new RegistrarProductos();
-        nuevop.setVisible(true);
-        nuevop.idcajero=idcajero;
-        nuevop.ncajero=ncajero;        
-        this.dispose();
+        Sqlusers users = new Sqlusers();
+        users usr = new users();
+        usr.setUser(idcajero);
+        if(users.esAdmin(usr)){
+            RegistrarProductos nuevop=new RegistrarProductos();
+            nuevop.setVisible(true);
+            nuevop.idcajero=idcajero;
+            nuevop.ncajero=ncajero;        
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Esta acción solo puede realizarce por el administrador");
+        }
     }//GEN-LAST:event_Producto_NuevoActionPerformed
 
     private void Lista_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista_ProductoActionPerformed
