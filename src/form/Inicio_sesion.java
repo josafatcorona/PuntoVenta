@@ -5,6 +5,7 @@
  */
 package form;
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.glass.events.KeyEvent;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -215,6 +216,11 @@ public class Inicio_sesion extends javax.swing.JFrame {
                 jPasswordFieldPassMouseClicked(evt);
             }
         });
+        jPasswordFieldPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldPassKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -333,6 +339,12 @@ String user,pass;
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         datosbd();
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jPasswordFieldPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldPassKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           Boton_Iniciar.doClick();
+       }
+    }//GEN-LAST:event_jPasswordFieldPassKeyPressed
 /**/
    void datosbd(){
      String[] datosbd=new String[4];

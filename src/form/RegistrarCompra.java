@@ -2,6 +2,7 @@
 package form;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import java.awt.event.KeyEvent;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -195,10 +196,11 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
         jLabel7.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabel7.setText("$");
 
+        total.setEditable(false);
         total.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         total.setForeground(new java.awt.Color(51, 0, 153));
         total.setText("0.0");
-        total.setEnabled(false);
+        total.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(153, 255, 153)));
         total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalActionPerformed(evt);
@@ -232,6 +234,11 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
         cod12.setText("5");
         cod12.setFocusCycleRoot(true);
         cod12.setFocusTraversalPolicyProvider(true);
+        cod12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cod12KeyPressed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -574,6 +581,57 @@ public class RegistrarCompra extends javax.swing.JFrame implements Runnable{
     private void AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarMouseClicked
 
     }//GEN-LAST:event_AgregarMouseClicked
+
+    private void cod12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cod12KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            /*Agregar.doClick();
+            cod12.setText("");*/
+            if(cod12.getText() != null){
+          cds=cod12.getText();    
+        }         
+        int exist;
+        exist=registrado(cds);
+        if(exist==-15)/*-15 es el valor de la variable dque regresa el metodo cuando existe el producto*/{
+                Sqlproductos sqlmod=new Sqlproductos();
+                productos mod=new productos();
+                mod.setId(cds);
+                String info[]=new String[5];
+                info=sqlmod.agregarventa(mod);
+                if(!info[0].equals("NO") && !info[0].equals("N") && !info[0].equals("IN") &&!info[0].equals("LETRA")){
+                    DefaultTableModel modelo= new DefaultTableModel();
+                    modelo=(DefaultTableModel) t2.getModel();
+                    modelo.addRow(info);
+                    //int fila=modelo.getRowCount();
+                    i=i+1;
+                }
+                else if(info[0].equals("N")){
+                    JOptionPane.showMessageDialog(null, "Ingresa un valor mayor a 0");
+                }else if(info[0].equals("IN")){
+                    JOptionPane.showMessageDialog(null, "Cantidad de articulos insuficiente");
+                }else if(info[0].equals("LETRA")){
+                    JOptionPane.showMessageDialog(null, "Debe introducir numeros"); 
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se encontró el producto"); 
+                }
+        }else{
+                 String valida = JOptionPane.showInputDialog(null,"Ingresa el numero de productos");
+                 if(esnumero(valida)){
+                     int can=0;
+                     Double cuen=0.0;
+                     can=Integer.parseInt(String.valueOf(t2.getValueAt(exist, 3)));
+                     can+=Integer.parseInt(valida);
+                     cuen=can*Double.parseDouble(String.valueOf(t2.getValueAt(exist, 2)));
+                     t2.setValueAt(can, exist, 3);
+                     t2.setValueAt(cuen,exist,4);
+                     cuenta();
+                 }
+        }
+        cod12.setText("");  
+        cod12.requestFocus();
+        cuenta();
+        }
+        
+    }//GEN-LAST:event_cod12KeyPressed
  public static boolean cierra=false;     
      Cobrar co= new Cobrar();  
 public String idcajero="";
