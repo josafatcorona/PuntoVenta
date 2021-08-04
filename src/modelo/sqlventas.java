@@ -18,7 +18,7 @@ public class sqlventas extends conectar{
     String nventa="",num="",sql="",sql2="",sql3="";
     int n=0,a;
     Double desc, total, aum;
-    String datos []= new String[3];
+    String datos []= new String[4];
     public int nceldas=0;
     String idventa="";
     String fecha="",cajero="";
@@ -45,7 +45,7 @@ public class sqlventas extends conectar{
     
  return num;   
 }    
-public void verventas(){  
+public void verventas(boolean Filtro,String f1, String f2){  
     //limpiar tabla
         DefaultTableModel tb = (DefaultTableModel) VentasDelDia.tventas.getModel();
         a = VentasDelDia.tventas.getRowCount()-1;
@@ -59,8 +59,14 @@ public void verventas(){
             tb2.removeRow(tb2.getRowCount()-1);
         }         
         //fin limpiar
-        sql="";   
-        sql="SELECT * FROM ventas";
+        
+        sql=""; 
+        if(Filtro == true){
+            sql="SELECT * FROM ventas where Fecha between '"+f1+"' and  '"+f2+"'";
+        }else{
+            sql="SELECT * FROM ventas";
+        }
+        
         DefaultTableModel modelo;      
        
         try {
@@ -72,6 +78,7 @@ public void verventas(){
                 datos[0]=rs.getString("Id");
                 datos[1]=rs.getString("Cajero");
                 datos[2]= rs.getString("Fecha");
+                datos[3]=rs.getString("Total");
                 modelo.addRow(datos);
             }
            

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.print.Doc;
 import javax.print.DocFlavor;
@@ -26,9 +27,9 @@ public class VentasDelDia extends javax.swing.JFrame {
     public VentasDelDia() {
         initComponents();
         this.setLocationRelativeTo(null);
-         sqlventas ventas=new sqlventas();
-        ventas.verventas();
-        date.setVisible(false);
+        sqlventas ventas=new sqlventas();
+        ventas.verventas(false,"","");
+        
         //datb.setVisible(false);
     }     
  String ncajero,idcajero;
@@ -50,11 +51,10 @@ public class VentasDelDia extends javax.swing.JFrame {
         tventas = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         ver = new javax.swing.JButton();
-        date = new com.toedter.calendar.JDateChooser();
         Buscar = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -105,7 +105,7 @@ public class VentasDelDia extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,18 +115,21 @@ public class VentasDelDia extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(61, Short.MAX_VALUE))))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        bticket.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         bticket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bticketActionPerformed(evt);
@@ -135,6 +138,7 @@ public class VentasDelDia extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
+        tventas.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         tventas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -165,13 +169,6 @@ public class VentasDelDia extends javax.swing.JFrame {
 
         jLabel5.setText("Del día:");
 
-        jTextField7.setText("Fecha actual");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-
         jPanel6.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -185,6 +182,8 @@ public class VentasDelDia extends javax.swing.JFrame {
             .addGap(0, 59, Short.MAX_VALUE)
         );
 
+        ver.setBackground(new java.awt.Color(255, 255, 255));
+        ver.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         ver.setText("Ver");
         ver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +192,6 @@ public class VentasDelDia extends javax.swing.JFrame {
         });
 
         Buscar.setText("Buscar");
-        Buscar.setEnabled(false);
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
@@ -209,21 +207,19 @@ public class VentasDelDia extends javax.swing.JFrame {
             .addComponent(jSeparator2)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Buscar)
-                        .addGap(18, 18, 18)
-                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addContainerGap()
                         .addComponent(bticket, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -240,12 +236,11 @@ public class VentasDelDia extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Buscar))
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Buscar)
+                        .addComponent(jLabel5))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -295,9 +290,8 @@ public class VentasDelDia extends javax.swing.JFrame {
             }
         });
 
-        tdetalle.setBackground(new java.awt.Color(102, 255, 102));
         tdetalle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tdetalle.setForeground(new java.awt.Color(255, 255, 255));
+        tdetalle.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         tdetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -401,7 +395,7 @@ public class VentasDelDia extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(copiaim, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -454,14 +448,10 @@ public class VentasDelDia extends javax.swing.JFrame {
          ventas.eliminarventa(folio.getText());
          JOptionPane.showMessageDialog(rootPane, "La venta se ha eliminado");  
          bticket.setText(""); folio.setText(""); cajero.setText(""); nticket.setText(""); fecha2.setText("");
-         ventas.verventas();
+         ventas.verventas(false,"","");
          }
      }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         // TODO add your handling code here:
@@ -483,13 +473,20 @@ public class VentasDelDia extends javax.swing.JFrame {
     }//GEN-LAST:event_copiaimActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-       Date day=date.getDate();
+        sqlventas ventas=new sqlventas();
+        Date day=jDateChooser1.getDate();
         int iday=day.getDay();
         int imonth=day.getMonth();
         int iyear=day.getYear();
+        Date fecha =  new Date();        
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String filterFecha = formato.format(day);
+        Date day2 = new Date(day.getTime()+(1000 * 60 * 60 * 24));
+        String filterFecha2 = formato.format(day2);
+        System.out.println(filterFecha+" || "+ filterFecha2);
+        ventas.verventas(true,filterFecha,filterFecha2);
         
-        System.out.println("d: "+iday+" m: "+ imonth+" y; "+ iyear);
-        JOptionPane.showMessageDialog(rootPane, "d: "+iday+" m: "+ imonth+" y; "+ iyear);//date.getDate();
+        
     }//GEN-LAST:event_BuscarActionPerformed
 /*Generar ticket*/
        private void generarticket() {
@@ -691,13 +688,13 @@ public class VentasDelDia extends javax.swing.JFrame {
     private javax.swing.JTextField bticket;
     public static javax.swing.JTextField cajero;
     private javax.swing.JButton copiaim;
-    private com.toedter.calendar.JDateChooser date;
     public static javax.swing.JTextField fecha2;
     public static javax.swing.JTextField folio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -720,7 +717,6 @@ public class VentasDelDia extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField7;
     public static javax.swing.JTextField nticket;
     public static javax.swing.JTable tdetalle;
     public static javax.swing.JTable tventas;

@@ -146,5 +146,11 @@ on a.id = b.id;
 select * from presentacion;
 
 INSERT INTO `presentacion` (`id`, `Nombre`) VALUES
-('ML', 'Mililitros'),
-('MG', 'Miligramos'));
+('MG', 'Gramos');
+
+delete  from presentacion  where id = "MG";
+
+select * from detalles_ventas;
+select * from ventas;
+select * from ventas where Fecha between '2021-07-02' and '2021-07-03';
+select * from ventas inner join detalles_ventas on ventas.id = detalles_ventas.id_Venta;
